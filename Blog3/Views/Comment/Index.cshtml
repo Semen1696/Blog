@@ -1,0 +1,33 @@
+﻿@model IQueryable<Comments>
+
+<div>
+    <h2>Комментарии</h2>
+    @if (Model.Any())
+    {
+        <ul class="big-image-list">
+            @foreach (Comments comments in Model)
+            {
+                @if (ViewBag.PostId == comments.PostId)
+                {
+
+
+            <li>
+                <h4> @comments.Author: </h4>
+                <h3> @comments.Text </h3>
+                <hr />
+            </li>
+                    }
+
+                }
+        </ul>
+    }
+    else
+    {
+        <h4>Нет комментариев</h4>
+    }
+
+
+</div>
+<div class="div-box">
+    <a asp-controller="Comment" asp-action="Back" asp-route-id="">Назад</a>
+</div>

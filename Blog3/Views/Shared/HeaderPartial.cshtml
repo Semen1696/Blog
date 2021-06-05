@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Blog3.Models
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<div id="header-wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+
+                <header id="header">
+                    <h1><a href="index.html" id="logo">Блог</a></h1>
+                    <nav id="nav">
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            <a asp-area="" asp-controller="Account" asp-action="UserPage">@User.Identity.Name</a>
+                        }
+                        else
+                        {
+                            <a asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            <a asp-area="" asp-controller="Account" asp-action="Login">Войти</a>
+                        }
+
+                        @*<a href="twocolumn1.html">Two Column #1</a>
+        <a href="twocolumn2.html" class="current-page-item">Two Column #2</a>
+        <a href="onecolumn.html">One Column</a>*@
+                        @*<a href="threecolumn.html">Войти</a>*@
+                    </nav>
+                </header>
+
+            </div>
+        </div>
+    </div>
+</div>

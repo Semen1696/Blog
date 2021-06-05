@@ -1,0 +1,49 @@
+﻿@model IQueryable<Posts>
+
+<div>
+    <h2>@User.Identity.Name</h2>
+
+    @if (User.IsInRole("admin"))
+    {
+        <div class="div-box">
+            <a asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="">Список пользователей</a>
+        </div>
+    }
+    else
+    {
+        <div class="div-box">
+            <a asp-area="" asp-controller="Post" asp-action="Edit" asp-route-id="">Добавить запись</a>
+        </div>
+    }
+
+    @if (Model.Any())
+    {
+        <div>
+
+            @foreach (Posts entity in Model)
+            {
+                @if (entity.UserId == ViewBag.mytext || User.IsInRole("admin"))
+                {
+                    <div>
+                        @($"{entity.Title}") |
+                        <a asp-area="" asp-controller="Post" asp-action="Edit" asp-route-id="@entity.PostId">редактировать</a>
+                        |
+                        <form style="display: inline-block;" id="form-@entity.PostId" asp-area="" asp-controller="Post" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@entity.PostId">
+                            <a href="#" onclick="document.getElementById('form-@entity.PostId').submit();">удалить</a>
+                        </form>
+                    </div>
+                }
+            }
+
+        </div>
+    }
+    <div class="div-box">
+
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <p>
+                <input type="submit" value="Выход" />
+            </p>
+        </form>
+    </div>
+</div>
