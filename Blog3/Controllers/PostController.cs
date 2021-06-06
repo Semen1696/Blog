@@ -14,15 +14,16 @@ namespace Blog.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IWebHostEnvironment hostingEnvironment;
 
-        public PostController(DataManager dataManager, UserManager<IdentityUser> userManager)
+        public PostController(DataManager dataManager, UserManager<IdentityUser> userManager, IWebHostEnvironment hostingEnvironment)
         {
             this.dataManager = dataManager;
             _userManager = userManager;
+            this.hostingEnvironment = hostingEnvironment;
         }
         public IActionResult Edit()
         {
- 
-            return View();
+            var entity = new Posts();
+            return View(entity);
         }
 
         [HttpPost]
@@ -52,7 +53,6 @@ namespace Blog.Controllers
             dataManager.Posts.DeletePost(id);
             return RedirectToAction("Index", "Home");
         }
-
-        
+       
     }
 }

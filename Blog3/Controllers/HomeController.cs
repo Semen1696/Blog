@@ -1,4 +1,5 @@
 ﻿using Blog.Domain;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 
@@ -11,6 +12,7 @@ namespace Blog.Controllers
         {
             this.dataManager = dataManager;
         }
+        [Authorize]
         public IActionResult Index()
         {
             return View(dataManager.Posts.GetPosts());

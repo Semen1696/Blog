@@ -32,9 +32,6 @@ namespace Blog.Domain
                 context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
-
-        
-
         public void DeletePost(int id)
         {
             context.Posts.Remove(new Posts() { PostId = id });

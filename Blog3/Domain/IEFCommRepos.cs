@@ -8,7 +8,9 @@ namespace Blog3.Domain
 {
     public interface IEFCommRepos
     {
-        IQueryable<Comments> GetComments();
+        IQueryable<Comments> GetComments(int PostId);
         void SaveComment(Comments entity);
+        void DeleteComment(int id);
+
     }
 }

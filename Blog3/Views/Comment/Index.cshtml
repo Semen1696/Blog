@@ -2,29 +2,33 @@
 
 <div>
     <h2>Комментарии</h2>
-    @if (Model.Any())
-    {
-        <ul class="big-image-list">
-            @foreach (Comments comments in Model)
+
+  @if (Model.Any())
+  {
+    <ul class="big-image-list">
+
+        @foreach (Comments comments in Model)
+        {            
+        <li>
+            <h4> @comments.Author: </h4>
+            <h3> @comments.Text </h3>
+
+            @if (ViewBag.UserId == comments.UserId)
             {
-                @if (ViewBag.PostId == comments.PostId)
-                {
-
-
-            <li>
-                <h4> @comments.Author: </h4>
-                <h3> @comments.Text </h3>
+                <form style="display: inline-block;" id="form-@comments.CommId" asp-area="" asp-controller="Comment" asp-action="Delete" method="post">
+                    <input type="hidden" name="id" value="@comments.CommId">
+                    <a href="#" onclick="document.getElementById('form-@comments.CommId').submit();">удалить</a>
+                </form>
                 <hr />
-            </li>
-                    }
-
-                }
-        </ul>
-    }
-    else
-    {
+            }
+        </li>
+        }
+    </ul>
+  }
+  else
+  {
         <h4>Нет комментариев</h4>
-    }
+  }
 
 
 </div>

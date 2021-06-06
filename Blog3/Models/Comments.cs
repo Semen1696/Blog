@@ -18,7 +18,8 @@ namespace Blog3.Models
         public string Text { get; set; }       
         public string Author { get; set; }
         public int PostId { get; set; }
-        public Posts Posts { get; set; }
+        public string UserId { get; set; }
+        public Posts Post { get; set; }
 
     }
 }

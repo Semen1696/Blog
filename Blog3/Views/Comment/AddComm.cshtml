@@ -2,13 +2,12 @@
 <script src="~/js/ckeditor/ckeditor.js"></script>
 
 <div>
-    
     <div>
         <form asp-area="" asp-controller="Comment" asp-action="AddComm" method="post" enctype="multipart/form-data">
 
             <div asp-validation-summary="All"></div>
             <div class="div-box">
-                <input type ="hidden" name="PostId" value="@ViewBag.PostId"/>
+                <input type="hidden" name="PostId" value="@ViewBag.PostId"  />
                 <label asp-for="Text"></label>
                 <textarea asp-for="Text"></textarea>
                 <span asp-validation-for="Text"></span>

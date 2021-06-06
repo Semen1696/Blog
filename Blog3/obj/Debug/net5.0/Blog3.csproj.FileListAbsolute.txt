@@ -83,7 +83,6 @@ C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\Meta
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\ScriptsPartial.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\SidebarPartial.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
-C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Users\Delete.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\wwwroot\js\Views\Home\Index.cshtml.g.cs
@@ -106,3 +105,6 @@ C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Blog3.genruntimeconfig.
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Comment\Index.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Comment\AddComm.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Blog3.csproj.AssemblyReference.cache
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs

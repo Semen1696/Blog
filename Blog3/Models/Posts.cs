@@ -22,7 +22,7 @@ namespace Blog3.Models
         public string Text { get; set; }
 
         [Display(Name = "Титульная картинка")]
-        public string TitleImagePath { get; set; }
+        public virtual string TitleImagePath { get; set; }
 
         public List<Comments> Comments { get; set; }
 

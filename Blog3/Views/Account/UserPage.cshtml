@@ -1,25 +1,30 @@
 ﻿@model IQueryable<Posts>
 
 <div>
-    <h2>@User.Identity.Name</h2>
+
 
     @if (User.IsInRole("admin"))
     {
+        <h2>Панель Администратора</h2>
         <div class="div-box">
-            <a asp-area="" asp-controller="Users" asp-action="Delete" asp-route-id="">Список пользователей</a>
+            <p>
+                <a asp-area="Admin" asp-controller="Users" asp-action="Index" asp-route-id="">Список пользователей</a>
+            </p>
         </div>
     }
     else
     {
+        <h2>@User.Identity.Name</h2>
         <div class="div-box">
             <a asp-area="" asp-controller="Post" asp-action="Edit" asp-route-id="">Добавить запись</a>
         </div>
     }
 
+
     @if (Model.Any())
     {
+        <h4>Спсиок записей</h4>
         <div>
-
             @foreach (Posts entity in Model)
             {
                 @if (entity.UserId == ViewBag.mytext || User.IsInRole("admin"))
@@ -33,6 +38,7 @@
                             <a href="#" onclick="document.getElementById('form-@entity.PostId').submit();">удалить</a>
                         </form>
                     </div>
+                    <hr />
                 }
             }
 

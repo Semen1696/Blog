@@ -15,9 +15,9 @@ namespace Blog3.Domain
         {
             this.context = context;
         }
-        public IQueryable<Comments> GetComments()
+        public IQueryable<Comments> GetComments(int PostId)
         {
-            return context.Comments;
+            return context.Comments.Where(x => x.PostId.Equals(PostId));
         }
         public void SaveComment(Comments entity)
         {
@@ -26,6 +26,11 @@ namespace Blog3.Domain
                 context.Entry(entity).State = EntityState.Added;
             else
                 context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+        public void DeleteComment(int id)
+        {
+            context.Comments.Remove(new Comments() { CommId = id });
             context.SaveChanges();
         }
     }

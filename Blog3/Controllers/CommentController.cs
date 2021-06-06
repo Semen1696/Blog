@@ -16,16 +16,16 @@ namespace Blog3.Controllers
             this.dataManager = dataManager;
             this._userManager = userManager;
         }
-        public IActionResult Index(int Id)
+        public IActionResult Index(int id)
         {
-            ViewBag.PostId = Id;
-            return View(dataManager.Comments.GetComments());
+            ViewBag.UserId = _userManager.GetUserId(User);
+            return View(dataManager.Comments.GetComments(id));
         }
 
        [Authorize]
-        public IActionResult AddComm(int Id)
+        public IActionResult AddComm(int id)
         {
-            ViewBag.PostId = Id;
+            ViewBag.PostId = id;
             return View();
         }
 
@@ -35,10 +35,17 @@ namespace Blog3.Controllers
             if (ModelState.IsValid)
             {
                 model.Author = _userManager.GetUserName(User);
+                model.UserId = _userManager.GetUserId(User);               
                 dataManager.Comments.SaveComment(model);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            dataManager.Comments.DeleteComment(id);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Back()
