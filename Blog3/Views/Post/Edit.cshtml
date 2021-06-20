@@ -2,9 +2,10 @@
 <script src="~/js/ckeditor/ckeditor.js"></script>
 
 <div>
-
+    
     <div>
         <form asp-area="" asp-controller="Post" asp-action="Edit" method="post" enctype="multipart/form-data">
+            <input type="hidden" asp-for="PostId" />
 
             <div asp-validation-summary="All"></div>
             <div class="div-box">
@@ -24,6 +25,8 @@
                     <img class="img-block" src="~/images/@Model.TitleImagePath" />
                 </div>
             </div>
+
+
             <input type="submit" value="Сохранить" />
         </form>
     </div>

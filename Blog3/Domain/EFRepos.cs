@@ -22,8 +22,15 @@ namespace Blog.Domain
 
         public IQueryable <Posts> GetPosts()
         {
-            return context.Posts;
+            return context.Posts.Include(x => x.Comments);
         }
+
+        public Posts GetPostById(int id)
+        {
+            var t = context.Posts.Include(x => x.Comments);
+            return t.FirstOrDefault(x => x.PostId == id); ;
+        }
+
         public void SavePost(Posts entity)
         {
             if (entity.PostId == default)

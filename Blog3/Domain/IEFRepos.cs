@@ -10,7 +10,7 @@ namespace Blog.Domain
     {
         IQueryable <Posts> GetPosts();
         void SavePost(Posts entity);
-        
+        Posts GetPostById(int id);
         void DeletePost(int id);
 
         

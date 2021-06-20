@@ -10,11 +10,13 @@ namespace Blog3.Controllers
     public class CommentController : Controller
     {
         private readonly DataManager dataManager;
+        //private readonly Posts posts;
         private readonly UserManager<IdentityUser> _userManager;
         public CommentController(DataManager dataManager, UserManager<IdentityUser> userManager)
         {
             this.dataManager = dataManager;
             this._userManager = userManager;
+            //this.posts = posts;
         }
         public IActionResult Index(int id)
         {
@@ -37,6 +39,7 @@ namespace Blog3.Controllers
                 model.Author = _userManager.GetUserName(User);
                 model.UserId = _userManager.GetUserId(User);               
                 dataManager.Comments.SaveComment(model);
+                //posts.Comments.Add(model);
                 return RedirectToAction("Index", "Home");
             }
             return View(model);

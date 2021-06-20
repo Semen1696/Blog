@@ -1,0 +1,43 @@
+﻿@model Posts
+
+<div>
+    <h2>@Model.Title</h2>
+    <div>
+        @if (Model.TitleImagePath != null)
+        {
+            <img src="~/images/@Model.TitleImagePath" width="700" height="500" />
+        }
+
+    </div>
+    <h3>@Html.Raw(Model.Text)</h3>
+    <hr />
+
+    @if (Model.Comments.Any())
+    {
+        <h2>Комментарии</h2>
+        @foreach (Comments comments in Model.Comments)
+        {
+            <h4> @comments.Author: @Html.Raw(comments.Text)</h4>
+            <hr />
+        }
+    }
+    else
+    {
+        <h2>Нет комментариев</h2>
+    }
+
+
+    <b>Комментарий</b><br>
+    <style type="text/css">
+        textarea[name="mesage"] {
+            resize: none;
+        }
+    </style>
+    <textarea name="mesage" rows="4" cols="55"></textarea>
+    <p><input type="submit" value="Добавить комментарий"></p>
+
+    
+
+
+
+</div>

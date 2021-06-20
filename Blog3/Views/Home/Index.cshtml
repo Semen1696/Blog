@@ -1,5 +1,6 @@
 ﻿@model IQueryable<Posts>
 
+
 <div>
     <h2>Записи</h2>
     @if (Model.Any())
@@ -8,17 +9,17 @@
             @foreach (Posts entity in Model)
             {
                 <li>
-                    <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                    <h4>Заголовок: @entity.Title </h4>
-                    <p> @entity.Text</p>
+                    @*<a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
+                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
+                    </a>*@
+                    <a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
+                        <h4>Заголовок: @entity.Title </h4>
+                    </a>
+                   @* <p> @Html.Raw(entity.Text)</p>*@
                     <h5>Опубликовал: @entity.Author</h5>
-                    <div class="div-box">
-
-                        <a asp-controller="Comment" asp-action="Index" asp-route-id="@entity.PostId">Комментарии</a> |
-                        <a asp-controller="Comment" asp-action="AddComm" asp-route-id="@entity.PostId">Добавить комментарий</a>
-                    </div>
-                    <hr/>
-                </li>
+                   
+                        <hr />
+</li>
             }
         </ul>
     }

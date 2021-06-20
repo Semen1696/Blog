@@ -75,7 +75,6 @@ C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Account\Log
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Account\UserPage.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Post\Edit.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\CssPartial.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\FooterPartial.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Shared\HeaderPartial.cshtml.g.cs
@@ -108,3 +107,5 @@ C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Blog3.csproj.AssemblyRe
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\Users\Index.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Post\Edit.cshtml.g.cs
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Post\Show.cshtml.g.cs

@@ -20,9 +20,9 @@ namespace Blog.Controllers
             _userManager = userManager;
             this.hostingEnvironment = hostingEnvironment;
         }
-        public IActionResult Edit()
+        public IActionResult Edit(int id)
         {
-            var entity = new Posts();
+            var entity = id == default ? new Posts() : dataManager.Posts.GetPostById(id);
             return View(entity);
         }
 
@@ -45,6 +45,12 @@ namespace Blog.Controllers
                 return RedirectToAction("Index", "Home");
             }
             return View(model);
+        }
+
+        public IActionResult Show(int id)
+        {
+
+            return View(dataManager.Posts.GetPostById(id));
         }
 
         [HttpPost]

@@ -13,14 +13,15 @@
             <h4> @comments.Author: </h4>
             <h3> @comments.Text </h3>
 
-            @if (ViewBag.UserId == comments.UserId)
+            @if (ViewBag.UserId == comments.UserId || User.IsInRole("admin"))
             {
                 <form style="display: inline-block;" id="form-@comments.CommId" asp-area="" asp-controller="Comment" asp-action="Delete" method="post">
                     <input type="hidden" name="id" value="@comments.CommId">
                     <a href="#" onclick="document.getElementById('form-@comments.CommId').submit();">удалить</a>
                 </form>
-                <hr />
+
             }
+            <hr />
         </li>
         }
     </ul>
