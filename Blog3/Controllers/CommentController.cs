@@ -31,19 +31,20 @@ namespace Blog3.Controllers
             return View();
         }
 
-        [HttpPost]
-        public IActionResult AddComm(Comments model)
-        {
-            if (ModelState.IsValid)
-            {
-                model.Author = _userManager.GetUserName(User);
-                model.UserId = _userManager.GetUserId(User);               
-                dataManager.Comments.SaveComment(model);
-                //posts.Comments.Add(model);
-                return RedirectToAction("Index", "Home");
-            }
-            return View(model);
-        }
+        //[HttpPost]
+        //public IActionResult PostComments(string mesage)
+        //{
+        //    string n = mesage;
+        //    //if (ModelState.IsValid)
+        //    //{
+        //    //    model.Author = _userManager.GetUserName(User);
+        //    //    model.UserId = _userManager.GetUserId(User);               
+        //    //    dataManager.Comments.SaveComment(model);
+        //    //    //posts.Comments.Add(model);
+        //    //    return RedirectToAction("Index", "Home");
+        //    //}
+        //    return View();
+        //}
         [HttpPost]
         public IActionResult Delete(int id)
         {

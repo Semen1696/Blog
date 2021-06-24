@@ -10,6 +10,7 @@ using Blog.Domain;
 using Blog.Service;
 using Blog3.Data;
 using Blog3.Domain;
+using AspNetCore.Unobtrusive.Ajax;
 
 namespace Blog
 {
@@ -26,6 +27,7 @@ namespace Blog
             services.AddTransient<IEFCommRepos, EFCommRepos>();
             services.AddTransient<DataManager>();
 
+            services.AddUnobtrusiveAjax();
             services.AddDbContext<ApplicationDbContext>(options =>
                  options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
@@ -71,6 +73,7 @@ namespace Blog
             app.UseHttpsRedirection();
             //поддержка статичных файлов css, js для разметки html
             app.UseStaticFiles();
+            app.UseUnobtrusiveAjax();
 
             app.UseCookiePolicy();
             app.UseAuthentication();    // подключение аутентификации

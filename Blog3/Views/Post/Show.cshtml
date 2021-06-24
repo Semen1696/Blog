@@ -1,6 +1,7 @@
 ﻿@model Posts
 
 <div>
+
     <h2>@Model.Title</h2>
     <div>
         @if (Model.TitleImagePath != null)
@@ -12,31 +13,27 @@
     <h3>@Html.Raw(Model.Text)</h3>
     <hr />
 
-    @if (Model.Comments.Any())
-    {
-        <h2>Комментарии</h2>
-        @foreach (Comments comments in Model.Comments)
-        {
-            <h4> @comments.Author: @Html.Raw(comments.Text)</h4>
-            <hr />
-        }
-    }
-    else
-    {
-        <h2>Нет комментариев</h2>
-    }
 
+    <h2>Комментарии</h2>
 
-    <b>Комментарий</b><br>
+    <div id="results" >
+        @await Html.PartialAsync("PostComments", Model.Comments)
+    </div>
+
     <style type="text/css">
         textarea[name="mesage"] {
             resize: none;
         }
     </style>
-    <textarea name="mesage" rows="4" cols="55"></textarea>
-    <p><input type="submit" value="Добавить комментарий"></p>
 
-    
+    <div id="results"></div>
+    @using (Html.AjaxBeginForm("PostComments", new AjaxOptions { UpdateTargetId = "results" }))
+    {
+        <textarea name="mesage" rows="4" cols="55"></textarea>
+        <input type="hidden" name="PostId" value="@ViewBag.PostId" />
+        <p><input type="submit" value="Добавить комментарий"></p>
+    }
+
 
 
 

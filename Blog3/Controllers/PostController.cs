@@ -49,7 +49,8 @@ namespace Blog.Controllers
 
         public IActionResult Show(int id)
         {
-
+            ViewBag.PostId = id;
+            ViewBag.UserId = _userManager.GetUserId(User);
             return View(dataManager.Posts.GetPostById(id));
         }
 
@@ -57,8 +58,31 @@ namespace Blog.Controllers
         public IActionResult Delete(int id)
         {
             dataManager.Posts.DeletePost(id);
-            return RedirectToAction("Index", "Home");
+            return View();
         }
-       
+
+        [HttpPost]
+        public IActionResult PostComments(string mesage, int PostId)
+        {
+            Comments comments = new Comments();
+            comments.UserId = _userManager.GetUserId(User);
+            comments.Text = mesage;
+            comments.PostId = PostId;
+            comments.Author = _userManager.GetUserName(User);
+            dataManager.Comments.SaveComment(comments);
+            ViewBag.UserId = _userManager.GetUserId(User);
+            //if (ModelState.IsValid)
+            //{
+            //    model.Author = _userManager.GetUserName(User);
+            //    model.UserId = _userManager.GetUserId(User);               
+            //    dataManager.Comments.SaveComment(model);
+            //    //posts.Comments.Add(model);
+            //    return RedirectToAction("Index", "Home");
+            //}
+            //var dv = dataManager.Comments.GetComments(PostId);
+            return PartialView(dataManager.Comments.GetComments(PostId));
+
+        }
+
     }
 }

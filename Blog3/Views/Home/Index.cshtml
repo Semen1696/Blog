@@ -8,18 +8,14 @@
         <ul class="big-image-list">
             @foreach (Posts entity in Model)
             {
-                <li>
-                    @*<a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
-                        <img src="~/images/@entity.TitleImagePath" alt="" class="left" />
-                    </a>*@
-                    <a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
-                        <h4>Заголовок: @entity.Title </h4>
-                    </a>
-                   @* <p> @Html.Raw(entity.Text)</p>*@
-                    <h5>Опубликовал: @entity.Author</h5>
-                   
-                        <hr />
-</li>
+            <li>
+                <a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
+                    <h4>Заголовок: @entity.Title </h4>
+                </a>
+                <h5>Опубликовал: @entity.Author</h5>
+
+                <hr />
+            </li>
             }
         </ul>
     }
