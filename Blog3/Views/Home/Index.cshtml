@@ -5,19 +5,29 @@
     <h2>Записи</h2>
     @if (Model.Any())
     {
-        <ul class="big-image-list">
-            @foreach (Posts entity in Model)
-            {
-            <li>
-                <a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
-                    <h4>Заголовок: @entity.Title </h4>
-                </a>
-                <h5>Опубликовал: @entity.Author</h5>
+<ul class="big-image-list">
+    @foreach (Posts entity in Model)
+    {
+        <li>
+            <a asp-controller="Post" asp-action="Show" asp-route-id="@entity.PostId">
+                <h3>@entity.Title</h3>               
+            </a>
+            <h5>Опубликовал: @entity.Author</h5>
+            <h5>Комментариев: @entity.Comments.Count()</h5>
 
-                <hr />
-            </li>
+            @if (ViewBag.UserId == entity.UserId || User.IsInRole("admin"))
+            {
+                <div>
+                    <a asp-controller="Post" asp-action="Edit" asp-route-id="@entity.PostId">Редактировать</a>
+                    |
+                    <a asp-controller="Post" asp-action="Delete" asp-route-id="@entity.PostId">Удалить</a>
+                </div>
+
             }
-        </ul>
+            <hr />
+        </li>
+    }
+</ul>
     }
     else
     {

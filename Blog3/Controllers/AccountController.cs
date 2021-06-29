@@ -20,7 +20,7 @@ namespace Blog.Controllers
             _signInManager = signInManager;
             this.dataManager = dataManager;
         }
-        [HttpGet]
+
         public IActionResult Register()
         {
             return View();
@@ -51,7 +51,7 @@ namespace Blog.Controllers
             }
             return View(model);
         }
-        [HttpGet]
+
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });

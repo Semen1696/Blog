@@ -22,7 +22,7 @@ namespace Blog.Domain
 
         public IQueryable <Posts> GetPosts()
         {
-            return context.Posts;
+            return context.Posts.Include(x => x.Comments);
         }
 
         public Posts GetPostById(int id)

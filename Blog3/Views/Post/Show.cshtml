@@ -3,21 +3,29 @@
 <div>
 
     <h2>@Model.Title</h2>
+
+    <h3>@Html.Raw(Model.Text)</h3>
     <div>
         @if (Model.TitleImagePath != null)
         {
-            <img src="~/images/@Model.TitleImagePath" width="700" height="500" />
+            <img src="~/images/@Model.TitleImagePath" width="500" height="300" />
         }
-
     </div>
-    <h3>@Html.Raw(Model.Text)</h3>
     <hr />
+
+    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "likes" }))
+    {
+        <button type="submit" class='like-toggle basic'>♥</button>
+        <span id="likes">5</span>
+    }
+
+
 
 
     <h2>Комментарии</h2>
 
-    <div id="results" >
-        @await Html.PartialAsync("PostComments", Model.Comments)
+    <div id="results">
+        @await Html.PartialAsync("~/Views/Comment/PostComments.cshtml", Model.Comments)
     </div>
 
     <style type="text/css">
@@ -26,8 +34,7 @@
         }
     </style>
 
-    <div id="results"></div>
-    @using (Html.AjaxBeginForm("PostComments", new AjaxOptions { UpdateTargetId = "results" }))
+    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "results" }))
     {
         <textarea name="mesage" rows="4" cols="55"></textarea>
         <input type="hidden" name="PostId" value="@ViewBag.PostId" />

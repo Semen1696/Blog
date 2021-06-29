@@ -25,7 +25,6 @@ namespace Blog3.Domain
         {
 
             if (entity.CommId == default)
-                
                 context.Entry(entity).State = EntityState.Added;
             else
                 context.Entry(entity).State = EntityState.Modified;
@@ -33,7 +32,6 @@ namespace Blog3.Domain
         }
         public void DeleteComment(int id)
         {
-            
             context.Comments.Remove(new Comments() { CommId = id });
             context.SaveChanges();
         }

@@ -10,52 +10,43 @@ namespace Blog3.Controllers
     public class CommentController : Controller
     {
         private readonly DataManager dataManager;
-        //private readonly Posts posts;
         private readonly UserManager<IdentityUser> _userManager;
         public CommentController(DataManager dataManager, UserManager<IdentityUser> userManager)
         {
             this.dataManager = dataManager;
             this._userManager = userManager;
-            //this.posts = posts;
         }
         public IActionResult Index(int id)
         {
             ViewBag.UserId = _userManager.GetUserId(User);
             return View(dataManager.Comments.GetComments(id));
         }
+     
 
-       [Authorize]
-        public IActionResult AddComm(int id)
+        [HttpPost]
+        public IActionResult PostComments(string mesage, int PostId)
         {
-            ViewBag.PostId = id;
-            return View();
+
+            Comments comments = new()
+            {
+                UserId = _userManager.GetUserId(User),
+                Text = mesage,
+                PostId = PostId,
+                Author = _userManager.GetUserName(User)
+            };
+            dataManager.Comments.SaveComment(comments);
+            ViewBag.UserId = _userManager.GetUserId(User);
+
+            return PartialView(dataManager.Comments.GetComments(PostId));
         }
 
-        //[HttpPost]
-        //public IActionResult PostComments(string mesage)
-        //{
-        //    string n = mesage;
-        //    //if (ModelState.IsValid)
-        //    //{
-        //    //    model.Author = _userManager.GetUserName(User);
-        //    //    model.UserId = _userManager.GetUserId(User);               
-        //    //    dataManager.Comments.SaveComment(model);
-        //    //    //posts.Comments.Add(model);
-        //    //    return RedirectToAction("Index", "Home");
-        //    //}
-        //    return View();
-        //}
-        [HttpPost]
-        public IActionResult Delete(int id)
+        public IActionResult Delete(int id, int postid)
         {
             dataManager.Comments.DeleteComment(id);
-            return RedirectToAction("Index", "Home");
+            ViewBag.UserId = _userManager.GetUserId(User);
+            return PartialView("~/Views/Comment/PostComments.cshtml", dataManager.Comments.GetComments(postid));
         }
 
-        public IActionResult Back()
-        {
-            return RedirectToAction("Index", "Home");
-        }
 
     }
 }

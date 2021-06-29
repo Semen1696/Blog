@@ -20,30 +20,6 @@
         </div>
     }
 
-
-    @if (Model.Any())
-    {
-        <h4>Спсиок записей</h4>
-        <div>
-            @foreach (Posts entity in Model)
-            {
-                @if (entity.UserId == ViewBag.mytext || User.IsInRole("admin"))
-                {
-                    <div>
-                        @($"{entity.Title}") |
-                        <a asp-area="" asp-controller="Post" asp-action="Edit" asp-route-id="@entity.PostId">редактировать</a>
-                        |
-                        <form style="display: inline-block;" id="form-@entity.PostId" asp-area="" asp-controller="Post" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@entity.PostId">
-                            <a href="#" onclick="document.getElementById('form-@entity.PostId').submit();">удалить</a>
-                        </form>
-                    </div>
-                    <hr />
-                }
-            }
-
-        </div>
-    }
     <div class="div-box">
 
         <form method="post" asp-controller="Account" asp-action="Logout">

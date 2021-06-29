@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Comments>
+
+<ul class="big-image-list">
+    @foreach (Comments comments in Model)
+    {
+        <li>
+            <h4> @comments.Author: </h4>
+            <h3>
+                <pre>@comments.Text</pre>
+            </h3>
+
+            @if (ViewBag.UserId == comments.UserId || User.IsInRole("admin"))
+            {
+                @Html.AjaxActionLink("Удалить", "Delete", "Comment", 
+                                     new { id = comments.CommId, postid = comments.PostId }, 
+                                     new AjaxOptions { UpdateTargetId = "results" }
+                                     )
+            }
+            <hr />
+        </li>
+    }
+</ul>
+
+
+
+

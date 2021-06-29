@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "WEUdRxqrfO4CeTK7vRwtASYcuYx/QCO8rwUzHRvM0j9edkXAHb8poVglm20EucxlLuD8W9dqJx0tDjfz9Cg4Xg==",
+  "dgSpecHash": "1jeN+4b2YWVUXA6DF8kSzTP5bJeiz9PdsM02NDY01TZMJ69MPZKtYB+8dNsi0x3CHIoGLRmAiCIJv111xLcDtQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\semen\\source\\repos\\Blog3\\Blog3\\Blog3.csproj",
   "expectedPackageFiles": [
@@ -146,9 +146,7 @@
     "C:\\Users\\semen\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\semen\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\semen\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\semen\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
-    "C:\\Users\\semen\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\5.0.0\\microsoft.aspnetcore.app.ref.5.0.0.nupkg.sha512",
-    "C:\\Users\\semen\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\5.0.0\\microsoft.windowsdesktop.app.ref.5.0.0.nupkg.sha512"
+    "C:\\Users\\semen\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

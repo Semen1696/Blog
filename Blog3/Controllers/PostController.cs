@@ -54,35 +54,13 @@ namespace Blog.Controllers
             return View(dataManager.Posts.GetPostById(id));
         }
 
-        [HttpPost]
         public IActionResult Delete(int id)
         {
             dataManager.Posts.DeletePost(id);
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public IActionResult PostComments(string mesage, int PostId)
-        {
-            Comments comments = new Comments();
-            comments.UserId = _userManager.GetUserId(User);
-            comments.Text = mesage;
-            comments.PostId = PostId;
-            comments.Author = _userManager.GetUserName(User);
-            dataManager.Comments.SaveComment(comments);
-            ViewBag.UserId = _userManager.GetUserId(User);
-            //if (ModelState.IsValid)
-            //{
-            //    model.Author = _userManager.GetUserName(User);
-            //    model.UserId = _userManager.GetUserId(User);               
-            //    dataManager.Comments.SaveComment(model);
-            //    //posts.Comments.Add(model);
-            //    return RedirectToAction("Index", "Home");
-            //}
-            //var dv = dataManager.Comments.GetComments(PostId);
-            return PartialView(dataManager.Comments.GetComments(PostId));
-
-        }
+      
 
     }
 }
