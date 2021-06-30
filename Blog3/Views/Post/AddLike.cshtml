@@ -1,0 +1,16 @@
+﻿@model Posts
+
+<div>
+    @foreach (Likes likes in Model.Likes)
+    {
+        if (likes.UserId == ViewBag.UserId)
+        {
+            <button type="submit" class="like" disabled>Вам понравилось</button>
+            @Model.LikesCount
+            return;
+        }
+
+    }
+    <button type="submit" class="like">Нравится</button>
+    @Model.LikesCount
+</div>

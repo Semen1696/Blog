@@ -9,6 +9,7 @@ namespace Blog3.Data
     {
         public DbSet<Posts> Posts { get; set; }
         public DbSet<Comments> Comments { get; set; }
+        public DbSet<Likes> Likes { get; set; }
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options) { Database.EnsureCreated(); }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

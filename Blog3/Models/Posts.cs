@@ -25,6 +25,8 @@ namespace Blog3.Models
         public virtual string TitleImagePath { get; set; }
 
         public List<Comments> Comments { get; set; }
+        public List<Likes> Likes { get; set; }
+        public int LikesCount { get; set; }
 
 
     }

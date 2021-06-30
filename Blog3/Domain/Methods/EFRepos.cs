@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
 using Blog3.Data;
 using Blog3.Models;
+using Blog3.Domain.Interfaces;
 
-namespace Blog.Domain
+namespace Blog3.Domain.Methods
 {
     public class EFRepos : IEFRepos
-
     {
         private readonly ApplicationDbContext  context;
         public EFRepos(ApplicationDbContext context)
@@ -22,12 +16,15 @@ namespace Blog.Domain
 
         public IQueryable <Posts> GetPosts()
         {
-            return context.Posts.Include(x => x.Comments);
+            return context.Posts.Include(post => post.Comments);
+                                
+                
         }
 
         public Posts GetPostById(int id)
         {
-            var t = context.Posts.Include(x => x.Comments);
+            var t = context.Posts.Include(x => x.Comments)
+                                 .Include(post => post.Likes); ;
             return t.FirstOrDefault(x => x.PostId == id); ;
         }
 
@@ -39,6 +36,17 @@ namespace Blog.Domain
                 context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
         }
+
+        // ///////////////////////////////////////////
+        public void SaveLike(Likes entity)
+        {
+            if (entity.LikeId == default)
+                context.Entry(entity).State = EntityState.Added;
+            else
+                context.Entry(entity).State = EntityState.Modified;
+            context.SaveChanges();
+        }
+
         public void DeletePost(int id)
         {
             context.Posts.Remove(new Posts() { PostId = id });

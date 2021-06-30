@@ -5,8 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Blog3.Domain.Interfaces;
 
-namespace Blog3.Domain
+namespace Blog3.Domain.Methods
 {
     public class EFCommRepos : IEFCommRepos
     {

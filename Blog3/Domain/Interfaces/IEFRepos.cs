@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Blog3.Models;
 
-namespace Blog.Domain
+namespace Blog3.Domain.Interfaces
 {
     public interface IEFRepos
     {
@@ -12,7 +12,8 @@ namespace Blog.Domain
         void SavePost(Posts entity);
         Posts GetPostById(int id);
         void DeletePost(int id);
-
         
+
+
     }
 }

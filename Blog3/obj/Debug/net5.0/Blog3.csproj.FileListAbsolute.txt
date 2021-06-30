@@ -372,3 +372,4 @@ D:\Blog3\Blog3\obj\Debug\net5.0\Blog3.dll
 D:\Blog3\Blog3\obj\Debug\net5.0\ref\Blog3.dll
 D:\Blog3\Blog3\obj\Debug\net5.0\Blog3.pdb
 D:\Blog3\Blog3\obj\Debug\net5.0\Blog3.genruntimeconfig.cache
+C:\Users\semen\source\repos\Blog3\Blog3\obj\Debug\net5.0\Razor\Views\Post\AddLike.cshtml.g.cs

@@ -60,6 +60,24 @@ namespace Blog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        [HttpPost]
+        public IActionResult AddLike(int LikeCount, int PostId)
+        {
+            Likes likes = new() 
+            { 
+                UserId = _userManager.GetUserId(User),
+                PostId = PostId
+            };
+            dataManager.Likes.SaveLike(likes);
+                             
+            LikeCount++;
+            Posts post = dataManager.Posts.GetPostById(PostId);
+            post.LikesCount = LikeCount;           
+            dataManager.Posts.SavePost(post);
+            ViewBag.UserId = _userManager.GetUserId(User);
+            return PartialView(post);
+        }
+
       
 
     }

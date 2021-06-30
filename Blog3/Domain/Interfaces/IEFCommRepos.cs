@@ -1,10 +1,8 @@
 ﻿using Blog3.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace Blog3.Domain
+
+namespace Blog3.Domain.Interfaces
 {
     public interface IEFCommRepos
     {

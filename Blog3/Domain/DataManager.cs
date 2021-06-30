@@ -1,4 +1,6 @@
 ﻿using Blog3.Domain;
+using Blog3.Domain.Interfaces;
+
 
 namespace Blog.Domain
 {
@@ -8,10 +10,13 @@ namespace Blog.Domain
 
         public IEFCommRepos  Comments { get; set; }
 
-        public DataManager(IEFRepos PostsRepos, IEFCommRepos CommentsRepos)
+        public IEFLikesRepos Likes { get; set; }
+
+        public DataManager(IEFRepos PostsRepos, IEFCommRepos CommentsRepos, IEFLikesRepos LikesRepos)
         {
             Posts = PostsRepos;
             Comments = CommentsRepos;
+            Likes = LikesRepos;
         }
     }
 }

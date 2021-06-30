@@ -9,8 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Blog.Domain;
 using Blog.Service;
 using Blog3.Data;
-using Blog3.Domain;
 using AspNetCore.Unobtrusive.Ajax;
+using Blog3.Domain.Interfaces;
+using Blog3.Domain.Methods;
 
 namespace Blog
 {
@@ -25,6 +26,7 @@ namespace Blog
         {
             services.AddTransient<IEFRepos, EFRepos>();
             services.AddTransient<IEFCommRepos, EFCommRepos>();
+            services.AddTransient<IEFLikesRepos, EFLikesRepos>();
             services.AddTransient<DataManager>();
 
             services.AddUnobtrusiveAjax();

@@ -13,11 +13,22 @@
     </div>
     <hr />
 
-    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "likes" }))
+
+    @using (Html.AjaxBeginForm("AddLike", new AjaxOptions { UpdateTargetId = "likes" }))
     {
-        <button type="submit" class='like-toggle basic'>♥</button>
-        <span id="likes">5</span>
+
+        
+        <input type="hidden" name="LikeCount" value="@Model.LikesCount" />
+        <input type="hidden" name="PostId" value="@Model.PostId" />
+        @*@Model.LikesCount*@
+
+        <div id="likes" align="left">
+            
+            @await Html.PartialAsync("AddLike")
+        </div>
+
     }
+
 
 
 

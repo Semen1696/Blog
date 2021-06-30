@@ -4,14 +4,16 @@ using Blog3.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Blog3.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210630090813__LikesAdded")]
+    partial class _LikesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -76,9 +78,6 @@ namespace Blog3.Migrations
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LikesCount")
-                        .HasColumnType("int");
-
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -128,7 +127,7 @@ namespace Blog3.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "7437a8e0-f4e0-4f83-b17e-63563af6eb08",
+                            ConcurrencyStamp = "187130ac-b30d-48a3-bc4d-8fc35456b2aa",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -227,13 +226,13 @@ namespace Blog3.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d44082e-d72a-4157-a66e-b8974b37b2d4",
+                            ConcurrencyStamp = "533ea49c-76dc-4055-95a9-7353a54cc575",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN47XRQUZ/4Cb6y6oJSnckfEaLw66yPZx1Eqf1xvalL5ckywylPzjSQXCvT+Hk6Sdg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGEuLy6IgD9gHEJY026Oi7cLEXJ2Vv4MgAUzwrSNyFZoKwHyspmdFnpNvPL5PRqlYg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -342,7 +341,7 @@ namespace Blog3.Migrations
             modelBuilder.Entity("Blog3.Models.Likes", b =>
                 {
                     b.HasOne("Blog3.Models.Posts", "Post")
-                        .WithMany("Likes")
+                        .WithMany()
                         .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -404,8 +403,6 @@ namespace Blog3.Migrations
             modelBuilder.Entity("Blog3.Models.Posts", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }
