@@ -1,0 +1,47 @@
+﻿@model LikeModel
+
+@using (Html.AjaxBeginForm(new AjaxOptions { UpdateTargetId = "likes" }))
+{
+
+    <div id="likes">
+            <input type="hidden" asp-for="PostId" />
+            <input type="hidden" asp-for="UserId" />
+            <input type="hidden" asp-for="LikeCount" />
+            <input type="hidden" asp-for="DislikeCount" />
+
+            <button type="submit" class="like" asp-action="AddLike" asp-controller="Like">Нравится</button>
+            @Model.LikeCount
+            <button type="submit" class="like" asp-action="AddDislike" asp-controller="Like">Не нравится</button>
+            @Model.DislikeCount
+       </div>
+}
+        @*<script>
+                $(document).ready(function () {
+
+                    $("#AddLike").click(function () {
+                        $("form").attr("action", "/Like/Addlike");
+                    });
+
+                    $("#AddDislike").click(function () {
+                        $("form").attr("action", "/Like/AddDislike");
+                    });
+
+                });
+            </script>*@
+
+        @*
+            <script>
+
+                $(document).ready(function () {
+
+                    $('#two').attr('disabled', false);
+                    $('#one').attr('disabled', true);
+
+                    //$('#one').click(function () {
+                    //    $(this).attr('disabled', true);
+                    //    $('#two').attr('disabled', false);
+                    //});
+
+                });
+            </script>*@
+

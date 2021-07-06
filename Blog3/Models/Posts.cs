@@ -23,10 +23,11 @@ namespace Blog3.Models
 
         [Display(Name = "Титульная картинка")]
         public virtual string TitleImagePath { get; set; }
-
+        public int LikesCount { get; set; }
+        public int DislikesCount { get; set; }
         public List<Comments> Comments { get; set; }
         public List<Likes> Likes { get; set; }
-        public int LikesCount { get; set; }
+       
 
 
     }

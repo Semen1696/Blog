@@ -16,7 +16,7 @@ namespace Blog3.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.6")
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Blog3.Models.Comments", b =>
@@ -53,6 +53,12 @@ namespace Blog3.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<bool>("Dislike")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("Like")
+                        .HasColumnType("bit");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 
@@ -75,6 +81,9 @@ namespace Blog3.Migrations
 
                     b.Property<string>("Author")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DislikesCount")
+                        .HasColumnType("int");
 
                     b.Property<int>("LikesCount")
                         .HasColumnType("int");
@@ -128,7 +137,7 @@ namespace Blog3.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "7437a8e0-f4e0-4f83-b17e-63563af6eb08",
+                            ConcurrencyStamp = "3a7d1c87-ce81-4838-baf6-524e821e80fb",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -227,13 +236,13 @@ namespace Blog3.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9d44082e-d72a-4157-a66e-b8974b37b2d4",
+                            ConcurrencyStamp = "8ddec3a7-1a5e-424f-8730-506b89b76a6b",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEN47XRQUZ/4Cb6y6oJSnckfEaLw66yPZx1Eqf1xvalL5ckywylPzjSQXCvT+Hk6Sdg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGSoCC8KcXeWwidSSH2ZNcS0/5p0ZUM5bv7cDH57HHOt6r/8h77IfflD9FQanaqTNg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,

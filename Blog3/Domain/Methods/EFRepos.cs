@@ -37,15 +37,6 @@ namespace Blog3.Domain.Methods
             context.SaveChanges();
         }
 
-        // ///////////////////////////////////////////
-        public void SaveLike(Likes entity)
-        {
-            if (entity.LikeId == default)
-                context.Entry(entity).State = EntityState.Added;
-            else
-                context.Entry(entity).State = EntityState.Modified;
-            context.SaveChanges();
-        }
 
         public void DeletePost(int id)
         {

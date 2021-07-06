@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Blog.Domain;
+using Blog3.Domain;
 using Blog.Service;
 using Blog3.Data;
 using AspNetCore.Unobtrusive.Ajax;

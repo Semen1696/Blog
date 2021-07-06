@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using Blog3.Models;
 using System.Security.Claims;
-using Blog.Domain;
+using Blog3.Domain;
 
 namespace Blog.Controllers
 {

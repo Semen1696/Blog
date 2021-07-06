@@ -18,8 +18,25 @@ namespace Blog3.Domain.Methods
         }
         public void SaveLike(Likes entity)
         {
-            context.Entry(entity).State = EntityState.Added;
+            if (entity.LikeId == default)
+                context.Entry(entity).State = EntityState.Added;
+            else
+                context.Entry(entity).State = EntityState.Modified;
             context.SaveChanges();
+        }
+        public Likes GetLikeById(int id)
+        {
+            var like = context.Likes.FirstOrDefault(x => x.LikeId == id);
+            return like;
+        }
+
+        public Likes GetLikeBy(int PostId, string UserId)
+        {
+            var like = context.Likes.FirstOrDefault(u => u.PostId == PostId && u.UserId == UserId);
+            if (like != null)
+                return like;
+            else
+                return new Likes();
         }
     }
 }

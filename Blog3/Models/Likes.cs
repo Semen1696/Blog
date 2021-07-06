@@ -10,7 +10,9 @@ namespace Blog3.Models
     {
         [Key]
         public int LikeId { get; set; }
-        public string UserId { get; set; }
+        public string UserId { get; set; }       
+        public bool Like { get; set; }
+        public bool Dislike { get; set; }
         public int PostId { get; set; }
         public Posts Post { get; set; }
     }

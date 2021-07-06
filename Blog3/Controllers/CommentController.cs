@@ -1,4 +1,4 @@
-﻿using Blog.Domain;
+﻿using Blog3.Domain;
 using Blog3.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -37,7 +37,7 @@ namespace Blog3.Controllers
             dataManager.Comments.SaveComment(comments);
             ViewBag.UserId = _userManager.GetUserId(User);
 
-            return PartialView(dataManager.Comments.GetComments(PostId));
+            return PartialView("~/Views/Comment/PostComments.cshtml", dataManager.Comments.GetComments(PostId));
         }
 
         public IActionResult Delete(int id, int postid)

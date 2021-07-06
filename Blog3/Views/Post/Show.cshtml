@@ -13,25 +13,16 @@
     </div>
     <hr />
 
-
-    @using (Html.AjaxBeginForm("AddLike", new AjaxOptions { UpdateTargetId = "likes" }))
-    {
-
-        
-        <input type="hidden" name="LikeCount" value="@Model.LikesCount" />
-        <input type="hidden" name="PostId" value="@Model.PostId" />
-        @*@Model.LikesCount*@
-
-        <div id="likes" align="left">
-            
-            @await Html.PartialAsync("AddLike")
-        </div>
-
-    }
-
-
-
-
+    
+                @await Html.PartialAsync("~/Views/Like/AddLike.cshtml", new LikeModel {PostId = Model.PostId,
+                                                                                       UserId = ViewBag.UserId,
+                                                                                       LikeCount = Model.LikesCount,
+                                                                                       DislikeCount = Model.DislikesCount,
+                                                                                       CanLike = ViewBag.like,
+                                                                                       CanDislike = ViewBag.Dislike
+                                                  
+           })
+   
 
     <h2>Комментарии</h2>
 
@@ -45,12 +36,14 @@
         }
     </style>
 
-    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "results" }))
+    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { id = "comment" }))
     {
-        <textarea name="mesage" rows="4" cols="55"></textarea>
-        <input type="hidden" name="PostId" value="@ViewBag.PostId" />
+
+        <textarea aria-label="AddComm" name="mesage" rows="4" cols="55"></textarea>
+        <input type="hidden" name="PostId" value="@Model.PostId" />
         <p><input type="submit" value="Добавить комментарий"></p>
     }
+
 
 
 

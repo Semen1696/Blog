@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
-using Blog.Domain;
+using Blog3.Domain;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Blog3.Models;
+using System.Linq;
 
 namespace Blog.Controllers
 {
@@ -49,9 +50,16 @@ namespace Blog.Controllers
 
         public IActionResult Show(int id)
         {
+            string UserId = _userManager.GetUserId(User);
+            var Like = dataManager.Likes.GetLikeBy(id, UserId);
+            ViewBag.Like = Like.Like;
+            ViewBag.Dislike = Like.Dislike;
             ViewBag.PostId = id;
-            ViewBag.UserId = _userManager.GetUserId(User);
-            return View(dataManager.Posts.GetPostById(id));
+            ViewBag.UserId = Like.UserId;
+            
+           var model = dataManager.Posts.GetPostById(id);
+            
+            return View(model);
         }
 
         public IActionResult Delete(int id)
@@ -60,25 +68,59 @@ namespace Blog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public IActionResult AddLike(int LikeCount, int PostId)
-        {
-            Likes likes = new() 
-            { 
-                UserId = _userManager.GetUserId(User),
-                PostId = PostId
-            };
-            dataManager.Likes.SaveLike(likes);
-                             
-            LikeCount++;
-            Posts post = dataManager.Posts.GetPostById(PostId);
-            post.LikesCount = LikeCount;           
-            dataManager.Posts.SavePost(post);
-            ViewBag.UserId = _userManager.GetUserId(User);
-            return PartialView(post);
-        }
+        //[HttpPost]
+        //public IActionResult AddLike(int LikeCount, int PostId, int DisCount, string Mark, int LikeId)
+        //{
+        //    Likes likes;
+        //    if (LikeId == default)
+        //    {
+        //        likes = new()
+        //        {
+        //            LikeId = LikeId,
+        //            UserId = _userManager.GetUserId(User),
+        //            PostId = PostId
+        //        };
+        //    }
+        //    else
+        //    {
+        //        likes = dataManager.Likes.GetLikeById(LikeId);
+        //    }
 
-      
+        //    Posts post = dataManager.Posts.GetPostById(PostId);
+        //    if (Mark == "Like")
+        //    {
+        //        LikeCount++;
+        //        if (DisCount != 0)
+        //            DisCount--;
+        //        likes.Like = true;
+        //        likes.Dislike = false;
+        //        post.LikesCount = LikeCount;
+        //        post.DislikesCount = DisCount;
+        //    }
+        //    else
+        //    {
+        //        if (Mark == "DisLike")
+        //        {
+        //            DisCount++;
+        //            if (LikeCount != 0)
+        //                LikeCount--;
+        //            likes.Like = false;
+        //            likes.Dislike = true;
+        //            post.DislikesCount = DisCount;
+        //            post.LikesCount = LikeCount;
+        //        }
+        //    }
+
+
+
+        //    dataManager.Posts.SavePost(post);
+        //    dataManager.Likes.SaveLike(likes);
+        //    ViewBag.UserId = _userManager.GetUserId(User);
+
+        //    return PartialView("AddLike", post);
+        //}
+
+
 
     }
 }

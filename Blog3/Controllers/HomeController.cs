@@ -1,4 +1,4 @@
-﻿using Blog.Domain;
+﻿using Blog3.Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;

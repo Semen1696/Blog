@@ -2,7 +2,7 @@
 using Blog3.Domain.Interfaces;
 
 
-namespace Blog.Domain
+namespace Blog3.Domain
 {
     public class DataManager
     {
