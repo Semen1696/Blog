@@ -40,6 +40,29 @@ namespace Blog.Controllers
                         titleImageFile.CopyTo(stream);
                     }
                 }
+                dataManager.Posts.SavePost(model);
+                return RedirectToAction("Index", "Home");
+            }
+            return View(model);
+        }
+
+        public IActionResult Create()
+        {
+            return View(new Posts());
+        }
+        [HttpPost]
+        public IActionResult Create(Posts model, IFormFile titleImageFile)
+        {
+            if (ModelState.IsValid)
+            {
+                if (titleImageFile != null)
+                {
+                    model.TitleImagePath = titleImageFile.FileName;
+                    using (var stream = new FileStream(Path.Combine(hostingEnvironment.WebRootPath, "images/", titleImageFile.FileName), FileMode.Create))
+                    {
+                        titleImageFile.CopyTo(stream);
+                    }
+                }
                 model.UserId = _userManager.GetUserId(User);
                 model.Author = _userManager.GetUserName(User);
                 dataManager.Posts.SavePost(model);
@@ -68,57 +91,7 @@ namespace Blog.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost]
-        //public IActionResult AddLike(int LikeCount, int PostId, int DisCount, string Mark, int LikeId)
-        //{
-        //    Likes likes;
-        //    if (LikeId == default)
-        //    {
-        //        likes = new()
-        //        {
-        //            LikeId = LikeId,
-        //            UserId = _userManager.GetUserId(User),
-        //            PostId = PostId
-        //        };
-        //    }
-        //    else
-        //    {
-        //        likes = dataManager.Likes.GetLikeById(LikeId);
-        //    }
-
-        //    Posts post = dataManager.Posts.GetPostById(PostId);
-        //    if (Mark == "Like")
-        //    {
-        //        LikeCount++;
-        //        if (DisCount != 0)
-        //            DisCount--;
-        //        likes.Like = true;
-        //        likes.Dislike = false;
-        //        post.LikesCount = LikeCount;
-        //        post.DislikesCount = DisCount;
-        //    }
-        //    else
-        //    {
-        //        if (Mark == "DisLike")
-        //        {
-        //            DisCount++;
-        //            if (LikeCount != 0)
-        //                LikeCount--;
-        //            likes.Like = false;
-        //            likes.Dislike = true;
-        //            post.DislikesCount = DisCount;
-        //            post.LikesCount = LikeCount;
-        //        }
-        //    }
-
-
-
-        //    dataManager.Posts.SavePost(post);
-        //    dataManager.Likes.SaveLike(likes);
-        //    ViewBag.UserId = _userManager.GetUserId(User);
-
-        //    return PartialView("AddLike", post);
-        //}
+        
 
 
 

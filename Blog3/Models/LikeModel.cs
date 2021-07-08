@@ -14,8 +14,6 @@ namespace Blog3.Models
         public int DislikeCount { get; set; }
         public bool CanLike { get; set;}
         public bool CanDislike { get; set; }
-        public string LikeStyle { get; set; }
-        public string DislikeStyle { get; set; }
 
     }
 }

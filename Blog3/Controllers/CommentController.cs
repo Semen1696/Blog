@@ -9,42 +9,42 @@ namespace Blog3.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly DataManager dataManager;
+        private readonly DataManager _dataManager;
         private readonly UserManager<IdentityUser> _userManager;
         public CommentController(DataManager dataManager, UserManager<IdentityUser> userManager)
         {
-            this.dataManager = dataManager;
-            this._userManager = userManager;
+            _dataManager = dataManager;
+            _userManager = userManager;
         }
         public IActionResult Index(int id)
         {
             ViewBag.UserId = _userManager.GetUserId(User);
-            return View(dataManager.Comments.GetComments(id));
+            return View(_dataManager.Comments.GetComments(id));
         }
      
 
         [HttpPost]
-        public IActionResult PostComments(string mesage, int PostId)
+        public IActionResult PostComments(string message, int postId)
         {
 
             Comments comments = new()
             {
                 UserId = _userManager.GetUserId(User),
-                Text = mesage,
-                PostId = PostId,
+                Text = message,
+                PostId = postId,
                 Author = _userManager.GetUserName(User)
             };
-            dataManager.Comments.SaveComment(comments);
+            _dataManager.Comments.SaveComment(comments);
             ViewBag.UserId = _userManager.GetUserId(User);
 
-            return PartialView("~/Views/Comment/PostComments.cshtml", dataManager.Comments.GetComments(PostId));
+            return PartialView("~/Views/Comment/PostComments.cshtml", _dataManager.Comments.GetComments(postId));
         }
 
         public IActionResult Delete(int id, int postid)
         {
-            dataManager.Comments.DeleteComment(id);
+            _dataManager.Comments.DeleteComment(id);
             ViewBag.UserId = _userManager.GetUserId(User);
-            return PartialView("~/Views/Comment/PostComments.cshtml", dataManager.Comments.GetComments(postid));
+            return PartialView("~/Views/Comment/PostComments.cshtml", _dataManager.Comments.GetComments(postid));
         }
 
 

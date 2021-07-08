@@ -67,8 +67,6 @@ namespace Blog3.Migrations
 
                     b.HasKey("LikeId");
 
-                    b.HasIndex("PostId");
-
                     b.ToTable("Likes");
                 });
 
@@ -88,6 +86,9 @@ namespace Blog3.Migrations
                     b.Property<int>("LikesCount")
                         .HasColumnType("int");
 
+                    b.Property<int?>("LikesLikeId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,6 +104,8 @@ namespace Blog3.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PostId");
+
+                    b.HasIndex("LikesLikeId");
 
                     b.ToTable("Posts");
                 });
@@ -137,7 +140,7 @@ namespace Blog3.Migrations
                         new
                         {
                             Id = "44546e06-8719-4ad8-b88a-f271ae9d6eab",
-                            ConcurrencyStamp = "3a7d1c87-ce81-4838-baf6-524e821e80fb",
+                            ConcurrencyStamp = "5bd74f61-17c7-4bbf-9def-9bc039646a9e",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -236,13 +239,13 @@ namespace Blog3.Migrations
                         {
                             Id = "3b62472e-4f66-49fa-a20f-e7685b9565d8",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "8ddec3a7-1a5e-424f-8730-506b89b76a6b",
+                            ConcurrencyStamp = "9b94f530-4e58-4adf-b2e2-174be5a8d8c7",
                             Email = "admin@email.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@EMAIL.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGSoCC8KcXeWwidSSH2ZNcS0/5p0ZUM5bv7cDH57HHOt6r/8h77IfflD9FQanaqTNg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEyicrb6U9xAFbgXLVFv9q+xSe1K5OzkUCdGhGxXkFeIoh81ofVFfNwycccyP5umLg==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -348,15 +351,13 @@ namespace Blog3.Migrations
                     b.Navigation("Post");
                 });
 
-            modelBuilder.Entity("Blog3.Models.Likes", b =>
+            modelBuilder.Entity("Blog3.Models.Posts", b =>
                 {
-                    b.HasOne("Blog3.Models.Posts", "Post")
-                        .WithMany("Likes")
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.HasOne("Blog3.Models.Likes", "Likes")
+                        .WithMany()
+                        .HasForeignKey("LikesLikeId");
 
-                    b.Navigation("Post");
+                    b.Navigation("Likes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -413,8 +414,6 @@ namespace Blog3.Migrations
             modelBuilder.Entity("Blog3.Models.Posts", b =>
                 {
                     b.Navigation("Comments");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }

@@ -20,70 +20,77 @@ namespace Blog3.Controllers
             _userManager = userManager;
         }
 
-        [HttpPost, ActionName("AddDislike")]
-        public IActionResult AddDislike(LikeModel likes)
+        [HttpPost]
+        public IActionResult AddLike(int PostId, string UserId)
         {
-            var UserId = _userManager.GetUserId(User);
 
-            Posts posts = _dataManager.Posts.GetPostById(likes.PostId);
-            if (likes.UserId != null && posts.LikesCount != 0)
+            Posts posts = _dataManager.Posts.GetPostById(PostId);
+            posts.LikesCount++;
+            if (UserId != null && posts.DislikesCount != 0)
+            {
+                posts.DislikesCount--;
+            }
+
+            var NewUserId = _userManager.GetUserId(User);
+            Likes like = _dataManager.Likes.GetLikeBy(PostId, NewUserId);
+            like.Like = true;
+            like.Dislike = false;
+            like.PostId = PostId;
+            like.UserId = UserId;
+            like.UserId = UserId == null ? NewUserId : UserId;
+
+            LikeModel likeModel = new()
+            {
+                PostId = PostId,
+                LikeCount = posts.LikesCount,
+                DislikeCount = posts.DislikesCount,
+                CanLike = like.Like,
+                CanDislike = like.Dislike,
+                UserId = like.UserId
+            };
+
+            _dataManager.Posts.SavePost(posts);
+            _dataManager.Likes.SaveLike(like);
+
+
+            return PartialView(likeModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddDislike(int PostId, string UserId)
+        {
+            
+            Posts posts = _dataManager.Posts.GetPostById(PostId);
+            if (UserId != null && posts.LikesCount != 0)
             {
                 posts.LikesCount--;
             }
             posts.DislikesCount++;
 
-            Likes like = _dataManager.Likes.GetLikeBy(likes.PostId, UserId);
+            var NewUserId = _userManager.GetUserId(User);
+            Likes like = _dataManager.Likes.GetLikeBy(PostId, NewUserId);
             like.Like = false;
             like.Dislike = true;
-            like.PostId = likes.PostId;
-            like.UserId = UserId;
+            like.PostId = PostId;
+            like.UserId = UserId == null ? NewUserId : UserId;
 
-
-            likes.LikeCount = posts.LikesCount;
-            likes.DislikeCount = posts.DislikesCount;
-            likes.CanLike = like.Like;
-            likes.CanDislike = like.Dislike;
-            likes.UserId = UserId;
-
-
-            _dataManager.Posts.SavePost(posts);
-            _dataManager.Likes.SaveLike(like);
-            return PartialView("~/Views/Like/AddLike.cshtml", likes);
-        }
-
-
-        [HttpPost, ActionName("AddLike")]
-        public IActionResult AddLike(LikeModel likes)
-        {
-            var UserId = _userManager.GetUserId(User);
-
-            Posts posts = _dataManager.Posts.GetPostById(likes.PostId);
-            posts.LikesCount++;
-            if (likes.UserId != null && posts.DislikesCount != 0)
+            LikeModel likeModel = new()
             {
-                posts.DislikesCount--;
-            }
-
-            Likes like = _dataManager.Likes.GetLikeBy(likes.PostId, UserId);
-            like.Like = true;
-            like.Dislike = false;
-            like.PostId = likes.PostId;
-            like.UserId = UserId;
-
-
-            likes.LikeCount = posts.LikesCount;
-            likes.DislikeCount = posts.DislikesCount;
-            likes.CanLike = like.Like;
-            likes.CanDislike = like.Dislike;
-            likes.UserId = UserId;
-
+                PostId = PostId,
+                LikeCount = posts.LikesCount,
+                DislikeCount = posts.DislikesCount,
+                CanLike = like.Like,
+                CanDislike = like.Dislike,
+                UserId = like.UserId
+            };
 
             _dataManager.Posts.SavePost(posts);
             _dataManager.Likes.SaveLike(like);
-
-
-            return PartialView(likes);
+            return PartialView("~/Views/Like/AddLike.cshtml", likeModel);
         }
+
+
+        
 
     }
 }

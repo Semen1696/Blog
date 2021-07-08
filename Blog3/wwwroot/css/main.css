@@ -1220,3 +1220,6 @@ button.likeDisable {
     background: #878e83;
     color: black;
 }
+.txtarea{
+    resize: none
+}

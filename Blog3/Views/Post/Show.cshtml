@@ -13,39 +13,33 @@
     </div>
     <hr />
 
-    
-                @await Html.PartialAsync("~/Views/Like/AddLike.cshtml", new LikeModel {PostId = Model.PostId,
-                                                                                       UserId = ViewBag.UserId,
-                                                                                       LikeCount = Model.LikesCount,
-                                                                                       DislikeCount = Model.DislikesCount,
-                                                                                       CanLike = ViewBag.like,
-                                                                                       CanDislike = ViewBag.Dislike
-                                                  
-           })
-   
+    <p id="likes">
+        @await Html.PartialAsync("~/Views/Like/AddLike.cshtml", new LikeModel
+        {
+            PostId = Model.PostId,
+            UserId = ViewBag.UserId,
+            LikeCount = Model.LikesCount,
+            DislikeCount = Model.DislikesCount,
+            CanLike = ViewBag.like,
+            CanDislike = ViewBag.Dislike
 
-    <h2>Комментарии</h2>
+        })
+    </p>
+
+    <h2>Комментарии:</h2>
 
     <div id="results">
         @await Html.PartialAsync("~/Views/Comment/PostComments.cshtml", Model.Comments)
     </div>
+    
 
-    <style type="text/css">
-        textarea[name="mesage"] {
-            resize: none;
-        }
-    </style>
-
-    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "results", InsertionMode = InsertionMode.Replace, HttpMethod = "POST" }, new { id = "comment" }))
+    @using (Html.AjaxBeginForm("PostComments", "Comment", new AjaxOptions { UpdateTargetId = "results", }))
     {
 
-        <textarea aria-label="AddComm" name="mesage" rows="4" cols="55"></textarea>
+        <textarea aria-label="AddComm" class="txtarea" name="message" rows="4" cols="55"></textarea>
         <input type="hidden" name="PostId" value="@Model.PostId" />
         <p><input type="submit" value="Добавить комментарий"></p>
     }
-
-
-
 
 
 </div>

@@ -1,47 +1,76 @@
 ﻿@model LikeModel
 
-@using (Html.AjaxBeginForm(new AjaxOptions { UpdateTargetId = "likes" }))
-{
+<button type="submit" id="Like">Нравится</button>
+@Model.LikeCount
+<button type="submit" id="Dislike">Не нравится</button>
+@Model.DislikeCount
 
-    <div id="likes">
-            <input type="hidden" asp-for="PostId" />
-            <input type="hidden" asp-for="UserId" />
-            <input type="hidden" asp-for="LikeCount" />
-            <input type="hidden" asp-for="DislikeCount" />
 
-            <button type="submit" class="like" asp-action="AddLike" asp-controller="Like">Нравится</button>
-            @Model.LikeCount
-            <button type="submit" class="like" asp-action="AddDislike" asp-controller="Like">Не нравится</button>
-            @Model.DislikeCount
-       </div>
-}
-        @*<script>
-                $(document).ready(function () {
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
 
-                    $("#AddLike").click(function () {
-                        $("form").attr("action", "/Like/Addlike");
+        $(document).ready(function ()
+        {
+                $('#Like').click(function ()
+                {
+
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "@Url.Action("AddLike", "Like")",
+                        data: { PostId: @Model.PostId, UserId: "@Model.UserId" },
+                        dataType: "text",
+                        success: function (result)
+                        {
+                            $("#likes").html(result);
+                        },
+                        error: function (req, status, error) {
+                            console.log(error);
+                        }
                     });
 
-                    $("#AddDislike").click(function () {
-                        $("form").attr("action", "/Like/AddDislike");
-                    });
-
+            });
+            $('#Dislike').click(function ()
+            {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "@Url.Action("AddDislike", "Like")",
+                        data: { PostId: @Model.PostId, UserId: "@Model.UserId" },
+                        dataType: "text",
+                        success: function (result) {
+                            $("#likes").html(result);
+                        },
+                        error: function (req, status, error) {
+                            console.log(error);
+                        }
                 });
-            </script>*@
+            });
+        });
+</script>
 
-        @*
-            <script>
 
-                $(document).ready(function () {
+<script>
+    var True = true;
+    var False = false;
+    var Like = document.getElementById("Like");
+    var Dislike = document.getElementById("Dislike");
 
-                    $('#two').attr('disabled', false);
-                    $('#one').attr('disabled', true);
+    if (@Model.CanLike) {
+        $('#Like').attr('disabled', true);
+        Like.className = 'likeDisable';
+        Dislike.className = 'like';
+    }
+    else {
+        if (@Model.CanDislike) {
+            $('#Dislike').attr('disabled', true);
+            Like.className = 'like';
+            Dislike.className = 'likeDisable';
+        }
+        else {
+            Like.className = 'like';
+            Dislike.className = 'like';
+        }
+    }
 
-                    //$('#one').click(function () {
-                    //    $(this).attr('disabled', true);
-                    //    $('#two').attr('disabled', false);
-                    //});
-
-                });
-            </script>*@
-
+</script>

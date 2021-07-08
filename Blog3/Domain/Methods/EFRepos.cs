@@ -17,14 +17,12 @@ namespace Blog3.Domain.Methods
         public IQueryable <Posts> GetPosts()
         {
             return context.Posts.Include(post => post.Comments);
-                                
-                
+                                               
         }
 
         public Posts GetPostById(int id)
         {
-            var t = context.Posts.Include(x => x.Comments)
-                                 .Include(post => post.Likes); ;
+            var t = context.Posts.Include(x => x.Comments);
             return t.FirstOrDefault(x => x.PostId == id); ;
         }
 
